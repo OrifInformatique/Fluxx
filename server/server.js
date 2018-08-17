@@ -74,8 +74,9 @@ con.connect(function(err) {
 
     socket.on('create room', room =>{
       console.log("->> createRoom:");
-      console.log(room);//console.log(io.sockets.adapter.rooms);
-      if(!RoomExist(room.Name)){
+      console.log(_rooms_name); console.log(room.Name);
+      //console.log(room);//console.log(io.sockets.adapter.rooms);
+      if(!_rooms_name.includes(room.Name)){
         socket.join(room.Name);
         _rooms_name.push(room.Name);
         io.sockets.adapter.rooms[room.Name].Name = room.Name;          
@@ -200,6 +201,3 @@ con.connect(function(err) {
 
   });
 });
-function RoomExist(Name){
-  return false;
-}
