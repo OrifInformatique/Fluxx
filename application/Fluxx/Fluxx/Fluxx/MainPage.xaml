@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Fluxx"
+             x:Class="Fluxx.MainPage">
+
+    <ContentPage.Content >
+        <StackLayout>
+            <Label
+                Text="Fluxx"
+                FontSize="Large"
+                HorizontalOptions="Center">
+            </Label>
+            <Label
+                x:Name="lbl_pseudo"
+                Text="Bienvenue, "
+                FontSize="Medium"
+                HorizontalOptions="Center" >
+            </Label>
+            <Button 
+                x:Name="btn_create_game" 
+                BackgroundColor="Red"
+                Margin="0"
+                Text="Créer une partie"
+                Clicked="OnCreateGame">
+            </Button>
+            <Button
+                x:Name="btn_join_game" 
+                BackgroundColor="Green"
+                Margin="0"
+                Text="Rejoindre une partie" 
+                Clicked="OnJoinGame">
+            </Button>
+            <Button 
+                x:Name="btn_settings" 
+                Text="Paramètres" 
+                BackgroundColor="Blue"
+                Margin="0"
+                Clicked="OnOpenSettings">
+            </Button> 
+            <Button 
+                x:Name="btn_connection" 
+                Text="Se connecter" 
+                BackgroundColor="Yellow"
+                Margin="0"
+                Clicked="Connection_Clicked">
+            </Button>
+            <Button 
+                x:Name="btn_test" 
+                Text="test" 
+                BackgroundColor="Yellow"
+                Margin="0"
+                Clicked="Test_Clicked">
+            </Button>
+           
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fluxx.CardView"
+             x:Name="Card">
+    <ContentView.Content>
+        <RelativeLayout
+            
+            Margin="0"
+            Padding="0"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            x:Name="CardLayout"
+            SizeChanged="CardLayoutChangeSize">
+            <Frame
+                x:Name="CardFrame"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="#E8EAEC"
+                Padding="0"
+                Margin="0">
+                <Grid 
+                    ColumnSpacing="0"
+                    RowSpacing="0"
+                    VerticalOptions="FillAndExpand" 
+                    HorizontalOptions="FillAndExpand"
+                    Padding="0"
+                    Margin="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="34*" />
+                        <ColumnDefinition Width="632*" />
+                        <ColumnDefinition Width="34*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="34*"/>
+                        <RowDefinition Height="1032*"/>
+                        <RowDefinition Height="34*"/>
+                    </Grid.RowDefinitions>
+                    <Frame
+                        x:Name="FrameColorType"
+                        Grid.Row="1" Grid.Column="1"
+                        Padding="0"
+                        Margin="0"
+                        >
+                        <Grid 
+                            ColumnSpacing="0"
+                            RowSpacing="0"
+                            Padding="0"
+                            Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="14*" />
+                                <ColumnDefinition Width="99*" />
+                                <ColumnDefinition Width="14*" />
+                                <ColumnDefinition Width="559*" />
+                                <ColumnDefinition Width="14*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="14*"/>
+                                <RowDefinition Height="105*" />
+                                <RowDefinition Height="967*"/>
+                                <RowDefinition Height="14*"/> 
+                            </Grid.RowDefinitions>
+                            <Image
+                                x:Name="ImageIconType" 
+                                VerticalOptions="End"
+                                Grid.Row="1" Grid.Column="1">
+                            </Image>
+                            <Frame
+                                x:Name="FrameContent"
+                                Grid.Row="1" Grid.Column="3"
+                                Grid.RowSpan="2"
+                                Padding="0"
+                                Margin="0"
+                                BackgroundColor="#E8EAEC">
+
+                                <Grid
+                                    x:Name="GridContent"
+                                    ColumnSpacing="0"
+                                    RowSpacing="0"
+                                    Padding="0"
+                                    Margin="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20*" />
+                                        <ColumnDefinition Width="519*" />
+                                        <ColumnDefinition Width="20*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0*"/>
+                                        <RowDefinition Height="180*"/>
+                                        <RowDefinition Height="3*"/>
+                                        <RowDefinition x:Name="row1" Height="889*"/>
+                                        <RowDefinition x:Name="row2" Height="0*"/>
+                                        <RowDefinition x:Name="row3" Height="0*"/>
+                                        <RowDefinition x:Name="row4" Height="0*"/>
+                                        <RowDefinition Height="20*"/>
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Row="1" Grid.Column="1"
+                                        Margin="0"
+                                        x:Name="LabelTitleType"
+                                        FontAttributes="Bold"
+                                        FontFamily="Tahoma"
+                                        TextColor="Black"
+                                        HorizontalTextAlignment="Start"
+                                        VerticalTextAlignment="Center">
+                                    </Label>
+                                    <Frame
+                                        Grid.Row="2" Grid.Column="1"
+                                        Margin="0"
+                                        VerticalOptions="FillAndExpand"
+                                        CornerRadius="0"
+                                        BackgroundColor="Black">
+                                        
+                                    </Frame>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </Frame>
+            <Frame
+                Padding="0"
+                Margin="0"
+                x:Name="LeftTitleFrame"
+                BackgroundColor="Transparent" >
+                <Label 
+                    BackgroundColor="Transparent"
+                    Margin="0"
+                    x:Name="LabelLeftTitle"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="End"
+                    FontAttributes="Bold"
+                    TextColor="#E8EAEC"
+                    Text="PAS DE LIMITES">
+                </Label>
+            </Frame>
+        </RelativeLayout>
+    </ContentView.Content>
+</ContentView>

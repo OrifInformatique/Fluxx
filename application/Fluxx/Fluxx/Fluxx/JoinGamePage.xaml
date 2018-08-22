@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fluxx.JoinGamePage">
+    <ContentPage.Content>
+        <StackLayout
+            AbsoluteLayout.LayoutFlags="All">
+            <Label x:Name="lbl_info" TextColor="Red"/>
+            <ScrollView
+            VerticalOptions="FillAndExpand"
+            Orientation="Vertical">
+                <StackLayout VerticalOptions="Start"  x:Name="RoomsEmplacement">
+                </StackLayout>
+            </ScrollView>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

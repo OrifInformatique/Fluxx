@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fluxx.GamePage">
+    <ContentPage.Content >
+        <StackLayout
+            BackgroundColor="Gray">
+            <ScrollView
+                VerticalOptions="Fill"
+                HorizontalOptions="Fill"
+                Orientation="Horizontal">
+
+                <StackLayout x:Name="CardEmplacement"
+                    VerticalOptions="Fill" 
+                    HorizontalOptions="CenterAndExpand" 
+                    Orientation="Horizontal">
+                </StackLayout> 
+            </ScrollView>
+            <Button 
+                    Text="test"
+                    Clicked="OnClick"
+                    ></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxx.Android", "Fluxx\Fluxx.Android\Fluxx.Android.csproj", "{13552348-AF15-4F10-AEA6-D37719634C0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluxx", "Fluxx\Fluxx\Fluxx.csproj", "{9F20415A-9F56-43D3-A53E-44ADCF3A9A9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{13552348-AF15-4F10-AEA6-D37719634C0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13552348-AF15-4F10-AEA6-D37719634C0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13552348-AF15-4F10-AEA6-D37719634C0A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{13552348-AF15-4F10-AEA6-D37719634C0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13552348-AF15-4F10-AEA6-D37719634C0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13552348-AF15-4F10-AEA6-D37719634C0A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9F20415A-9F56-43D3-A53E-44ADCF3A9A9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F20415A-9F56-43D3-A53E-44ADCF3A9A9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F20415A-9F56-43D3-A53E-44ADCF3A9A9B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9F20415A-9F56-43D3-A53E-44ADCF3A9A9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F20415A-9F56-43D3-A53E-44ADCF3A9A9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F20415A-9F56-43D3-A53E-44ADCF3A9A9B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {525148DD-B9D1-4E08-BC4C-246AB0AE041F}
+	EndGlobalSection
+EndGlobal

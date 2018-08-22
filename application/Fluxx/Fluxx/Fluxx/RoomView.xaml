@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fluxx.RoomView"
+             HeightRequest="80"
+             HorizontalOptions="Fill"
+             x:Name="Room">
+    <ContentView.Content>
+        <StackLayout
+            Orientation="Vertical"
+            Margin="5"
+            VerticalOptions="Start"
+            HorizontalOptions="Fill">
+            <Label x:Name="lbl_info" TextColor="Red"></Label>
+            <StackLayout VerticalOptions="Start"
+                         Orientation="Horizontal">
+                <Label x:Name="RoomName" Text="unknow" />
+                <Label x:Name="RoomNumPlayer"  Text="unknow" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <StackLayout VerticalOptions="End"
+                         Orientation="Horizontal">
+                <Entry x:Name="password" IsPassword="True" Placeholder="Password" Text="" HorizontalOptions="FillAndExpand"/>
+                <Button x:Name="JoinButton" Text="Joindre" Clicked="JoinButton_Clicked" BackgroundColor="LightGray"  HorizontalOptions="End"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

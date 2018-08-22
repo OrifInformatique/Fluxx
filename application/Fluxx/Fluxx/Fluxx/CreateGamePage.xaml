@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Fluxx.CreateGamePage">
+    <ContentPage.Content >
+        
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label />
+                <Label x:Name="RoomName" 
+                       Text="RoomName" 
+                       FontSize="Large" 
+                       HorizontalOptions="CenterAndExpand"/>
+                <Label x:Name="RoomNumPlayer" 
+                       Text="/" FontSize="Medium"
+                       HorizontalOptions="End"/>
+            </StackLayout>
+            <StackLayout x:Name="PlayersEmplacement"
+                         VerticalOptions="StartAndExpand">
+
+            </StackLayout>
+            <Button VerticalOptions="End"
+                    x:Name="LunchGame" 
+                    Clicked="LuncheGame"
+                    Text="Continuer"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
