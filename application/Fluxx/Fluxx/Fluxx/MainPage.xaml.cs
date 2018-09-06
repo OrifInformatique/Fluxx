@@ -16,48 +16,44 @@ namespace Fluxx
         Player _player;
         Socket socket;
 
-        public MainPage()
+        public MainPage(Player p)
 		{
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            if (p != null)
+            {
+                _player = p;
+                ChargeConnected(true);
+            }
+            else
+            {
+                ChargeConnected(false);
+            }
             socket = new ServerConnection().Socket();
         }
       
-        protected override void OnAppearing()
+        public void ChargeConnected(bool connected)
         {
-            //base.OnAppearing();
-            CheckConnection();
-        }
-        public void CheckConnection()
-        {
-            btn_create_game.IsEnabled = false;
-            btn_join_game.IsEnabled = false;
-            btn_settings.IsEnabled = false;
-            if(Application.Current.Properties.ContainsKey("playerID"))
+            if (connected)
             {
-                _player = new Player
-                {
-                    Id = (int)Application.Current.Properties["playerID"],
-                    Pseudo = (string)Application.Current.Properties["playerPseudo"],
-                    Password = (string)Application.Current.Properties["playerPassword"],
-                    Color = (string)Application.Current.Properties["playerColor"],
-                    Wins = (int)Application.Current.Properties["playerWins"],
-                    Losses = (int)Application.Current.Properties["playerLosses"]
-                };
-                
-                JObject jout = (JObject)JToken.FromObject(_player);
-                socket.Emit("connection player", jout);
-                lbl_pseudo.Text = "Bienvenue, "+_player.Pseudo;
-
                 btn_create_game.IsEnabled = true;
                 btn_join_game.IsEnabled = true;
                 btn_settings.IsEnabled = true;
+                lbl_pseudo.Text = "Bienvenue, " + _player.Pseudo;
             }
-            else lbl_pseudo.Text = "Vous n'êtes pas connecté !";
-            
-        }
+            else
+            {
 
-        private void OnCreateGame(object sender, EventArgs e)
+                btn_create_game.IsEnabled = false;
+                btn_join_game.IsEnabled = false;
+                btn_settings.IsEnabled = false;
+                lbl_pseudo.Text = "Vous n'êtes pas connecté !";
+            }
+        }
+ 
+
+        private void On
+            (object sender, EventArgs e)
         {
             if (_player != null)
             {
@@ -75,22 +71,16 @@ namespace Fluxx
         }
         private void OnOpenSettings(object sender, EventArgs e)
         {
-            SettingsPage settingsPage = new SettingsPage();
-            Application.Current.MainPage.Navigation.PushAsync(settingsPage);
-    
+            if (_player != null)
+            {
+                SettingsPage settingsPage = new SettingsPage();
+                Application.Current.MainPage.Navigation.PushAsync(settingsPage);
+            }
         }
         private void Connection_Clicked(object sender, EventArgs e)
         {
             ConnectionPage connectionPage = new ConnectionPage();
             Application.Current.MainPage.Navigation.PushAsync(connectionPage);
-            
-        }
-        private void Test_Clicked(object sender, EventArgs e)
-        {
-            GamePage gamePage = new GamePage();
-            Application.Current.MainPage.Navigation.PushAsync(gamePage);
-        }
-
-       
+        }       
     }
 }

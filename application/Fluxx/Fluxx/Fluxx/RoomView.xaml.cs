@@ -54,9 +54,9 @@ namespace Fluxx
                     
                 
                 string jout = "{ RoomName: '" + _room.Name + ", RoomOpen: " + _room.Name + ", RoomPLayers: [" + players + "], PlayerId: " + _player.Id + ", PlayerPseudo: " + _player.Pseudo + ", PlayerPassword: " + _player.Password + ", PlayerWins: " + _player.Wins + ", PlayerLosses: " + _player.Losses + ", PlayerColor: " + _player.Color + "}";
-                socket.Emit("join room", jout);
+                socket.Emit("joinRoom", jout);
 
-                socket.On("join room echo", data_result =>
+                socket.On("joinRoomEcho", data_result =>
                 {
                     if ( (string)data_result == "true")
                     {

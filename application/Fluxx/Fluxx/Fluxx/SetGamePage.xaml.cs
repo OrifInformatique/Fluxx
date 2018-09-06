@@ -58,9 +58,9 @@ namespace Fluxx
             
             JObject jout = JObject.Parse(JsonConvert.SerializeObject(_room));
 
-            socket.Emit("create room", jout);
+            socket.Emit("createRoom", jout);
 
-            socket.On("create room echo", data_result =>
+            socket.On("createRoomEcho", data_result =>
             {
                 if ((bool)data_result)
                 {

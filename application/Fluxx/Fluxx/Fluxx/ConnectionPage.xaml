@@ -4,22 +4,26 @@
              x:Class="Fluxx.ConnectionPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="" 
-                   x:Name="lbl_info" 
-                   TextColor="Red" />
-            <Label Text="Connectez vous à Fluxx!"
-                   VerticalOptions="Start"
-                   HorizontalOptions="CenterAndExpand" />
-            <Entry x:Name="Pseudo"
-                   Placeholder="Pseudo" 
-                   HorizontalOptions="FillAndExpand"/>
-            <Entry x:Name="Password"
-                   Placeholder="Mot de passe" 
-                   IsPassword="True" 
-                   HorizontalOptions="FillAndExpand"/>
-            <Button Text="Connection" 
-                    x:Name="btn_Connection"
-                    Clicked="Connection_Clicked" />
+            <StackLayout x:Name="Entry">
+                <Label Text="" 
+                       x:Name="lbl_info" 
+                       TextColor="Red" />
+                <Label Text="Connectez vous à Fluxx!"
+                       VerticalOptions="Start"
+                       HorizontalOptions="CenterAndExpand" />
+                <Entry x:Name="Pseudo"
+                       Placeholder="Pseudo" 
+                       HorizontalOptions="FillAndExpand"/>
+                <Entry x:Name="Password"
+                       Placeholder="Mot de passe" 
+                       IsPassword="True" 
+                       HorizontalOptions="FillAndExpand"/>
+                <Button Text="Connection" 
+                        x:Name="btn_Connection"
+                        Clicked="Connection_Clicked" />
+            </StackLayout>
+            <ActivityIndicator x:Name="Loader"  IsVisible="False" IsRunning="False" />
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

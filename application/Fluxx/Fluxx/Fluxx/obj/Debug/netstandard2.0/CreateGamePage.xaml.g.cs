@@ -8,13 +8,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("Fluxx.CreateGamePage.xaml", "CreateGamePage.xaml", typeof(global::Fluxx.CreateGamePage))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("Fluxx.CreateGamePage.xaml", "CreateGamePage.xaml", typeof(global::Fluxx.
+             Page))]
 
 namespace Fluxx {
     
     
     [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("CreateGamePage.xaml")]
-    public partial class CreateGamePage : global::Xamarin.Forms.ContentPage {
+    public partial class 
+             Page : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.Label RoomName;
@@ -30,7 +32,8 @@ namespace Fluxx {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(CreateGamePage));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(
+             Page));
             RoomName = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "RoomName");
             RoomNumPlayer = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "RoomNumPlayer");
             PlayersEmplacement = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.StackLayout>(this, "PlayersEmplacement");

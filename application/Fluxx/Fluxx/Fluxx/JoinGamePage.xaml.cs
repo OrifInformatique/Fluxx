@@ -32,12 +32,12 @@ namespace Fluxx
         private void ChargeAllRooms()
         {
 
-            socket.Emit("get all room");
-            socket.On("get all room echo", data_result => {
+            socket.Emit("getAllRoom");
+            socket.On("getAllRoomEcho", data_result => {
                 rooms = JsonConvert.DeserializeObject<Room[]>(data_result.ToString());
                 ChargeViews(rooms);
             });
-            socket.On("new room echo", data_result =>
+            socket.On("newRoomEcho", data_result =>
             {
                 Room[] room = { JsonConvert.DeserializeObject<Room>(data_result.ToString()) };
                 ChargeViews(room);

@@ -12,17 +12,35 @@ namespace Fluxx
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PlayerView : ContentView
 	{
-		public PlayerView (Player player)
+        Player player;
+		public PlayerView ()
 		{
 			InitializeComponent ();
             ChargePlayer(player);
+            
 		}
-        private void ChargePlayer(Player player)
+        private void ChargePlayer(Player _player)
         {
-            PlayerName.Text = player.Pseudo;
-            PlayerId.Text += player.Id.ToString();
-            PlayerWins.Text += player.Wins.ToString();
-            PlayerLosses.Text += player.Losses.ToString();
+            if(_player == null)
+            {
+                PlayerName.IsVisible = false;
+                PlayerId.IsVisible = false;
+                PlayerWins.IsVisible = false;
+                PlayerLosses.IsVisible = false;
+                content.BackgroundColor = Color.Black;
+            }
+            else
+            {
+                PlayerName.IsVisible = true;
+                PlayerId.IsVisible = true;
+                PlayerWins.IsVisible = true;
+                PlayerLosses.IsVisible = true;
+                PlayerName.Text = _player.Pseudo;
+                PlayerId.Text += _player.Id.ToString();
+                PlayerWins.Text += _player.Wins.ToString();
+                PlayerLosses.Text += _player.Losses.ToString();
+            }
+             
         }
 	}
 }

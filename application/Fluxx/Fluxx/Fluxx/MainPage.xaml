@@ -19,14 +19,14 @@
             </Label>
             <Button 
                 x:Name="btn_create_game" 
-                BackgroundColor="Red"
+                BackgroundColor="#C9DA37"
                 Margin="0"
                 Text="Créer une partie"
                 Clicked="OnCreateGame">
             </Button>
             <Button
                 x:Name="btn_join_game" 
-                BackgroundColor="Green"
+                BackgroundColor="#FFE500"
                 Margin="0"
                 Text="Rejoindre une partie" 
                 Clicked="OnJoinGame">
@@ -34,27 +34,17 @@
             <Button 
                 x:Name="btn_settings" 
                 Text="Paramètres" 
-                BackgroundColor="Blue"
+                BackgroundColor="#EE5BA0"
                 Margin="0"
                 Clicked="OnOpenSettings">
-            </Button> 
+            </Button>
             <Button 
                 x:Name="btn_connection" 
                 Text="Se connecter" 
-                BackgroundColor="Yellow"
+                BackgroundColor="#00B0DF"
                 Margin="0"
                 Clicked="Connection_Clicked">
             </Button>
-            <Button 
-                x:Name="btn_test" 
-                Text="test" 
-                BackgroundColor="Yellow"
-                Margin="0"
-                Clicked="Test_Clicked">
-            </Button>
-           
-
         </StackLayout>
     </ContentPage.Content>
-
 </ContentPage>

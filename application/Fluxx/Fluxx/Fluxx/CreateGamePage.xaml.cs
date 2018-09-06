@@ -14,12 +14,13 @@ using Xamarin.Forms.Xaml;
 namespace Fluxx
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CreateGamePage : ContentPage
+	public partial class 
+        Page : ContentPage
 	{
         Room _room;
         Player _player;
         Socket socket;
-		public CreateGamePage (Room room, Player player)
+		public void CreateGamePage (Room room, Player player)
 		{
 			InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
@@ -44,7 +45,7 @@ namespace Fluxx
             }
 
             JObject jout = JObject.Parse(JsonConvert.SerializeObject(_room));
-            socket.Emit("leave room", jout);
+            socket.Emit("leaveRoom", jout);
             return base.OnBackButtonPressed();
 
         }

@@ -1853,20 +1853,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sela\\.nuget\\packages\\": {}
+    "C:\\Users\\sela.INFORMATIQUE\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\xampp\\htdocs\\Fluxx\\application\\Fluxx_02\\Fluxx\\Fluxx.Android\\Fluxx.Android.csproj",
+      "projectUniqueName": "C:\\Users\\sela.INFORMATIQUE\\Documents\\GitHub\\Fluxx\\application\\Fluxx\\Fluxx\\Fluxx.Android\\Fluxx.Android.csproj",
       "projectName": "Fluxx.Android",
-      "projectPath": "C:\\xampp\\htdocs\\Fluxx\\application\\Fluxx_02\\Fluxx\\Fluxx.Android\\Fluxx.Android.csproj",
-      "packagesPath": "C:\\Users\\sela\\.nuget\\packages\\",
-      "outputPath": "C:\\xampp\\htdocs\\Fluxx\\application\\Fluxx_02\\Fluxx\\Fluxx.Android\\obj\\",
+      "projectPath": "C:\\Users\\sela.INFORMATIQUE\\Documents\\GitHub\\Fluxx\\application\\Fluxx\\Fluxx\\Fluxx.Android\\Fluxx.Android.csproj",
+      "packagesPath": "C:\\Users\\sela.INFORMATIQUE\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sela.INFORMATIQUE\\Documents\\GitHub\\Fluxx\\application\\Fluxx\\Fluxx\\Fluxx.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\sela\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\sela.INFORMATIQUE\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1879,8 +1879,8 @@
       "frameworks": {
         "monoandroid81": {
           "projectReferences": {
-            "C:\\xampp\\htdocs\\Fluxx\\application\\Fluxx_02\\Fluxx\\Fluxx\\Fluxx.csproj": {
-              "projectPath": "C:\\xampp\\htdocs\\Fluxx\\application\\Fluxx_02\\Fluxx\\Fluxx\\Fluxx.csproj"
+            "C:\\Users\\sela.INFORMATIQUE\\Documents\\GitHub\\Fluxx\\application\\Fluxx\\Fluxx\\Fluxx\\Fluxx.csproj": {
+              "projectPath": "C:\\Users\\sela.INFORMATIQUE\\Documents\\GitHub\\Fluxx\\application\\Fluxx\\Fluxx\\Fluxx\\Fluxx.csproj"
             }
           }
         }

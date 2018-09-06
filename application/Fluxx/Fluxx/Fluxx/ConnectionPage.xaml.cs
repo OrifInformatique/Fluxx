@@ -32,9 +32,11 @@ namespace Fluxx
         private void Connection_Clicked(object sender, EventArgs e)
         {
           
-            Pseudo.IsEnabled = false;
-            Password.IsEnabled = false;
-            btn_Connection.IsEnabled = false;
+            Entry.IsEnabled = false;
+            Entry.IsVisible = false;
+            Loader.IsVisible = true;
+            Loader.IsRunning = true;
+            
 
             if (Pseudo.Text != null && Password.Text != null)
             {
@@ -44,8 +46,8 @@ namespace Fluxx
                     ["pseudo"] = Pseudo.Text,
                     ["password"] = Hash(Password.Text)
                 };
-                socket.Emit("login player", jout);
-                socket.On("login player echo", async data_result =>
+                socket.Emit("loginPlayer", jout);
+                socket.On("loginPlayerEcho", async data_result =>
                 {
                     if (!data_result.ToString().StartsWith("Error: "))
                     {
@@ -60,18 +62,20 @@ namespace Fluxx
                         await Application.Current.SavePropertiesAsync();
                         Device.BeginInvokeOnMainThread(() =>
                         {
-                            Application.Current.MainPage.Navigation.PopAsync();
+                            MainPage mainPage = new MainPage(p);
+                            Application.Current.MainPage.Navigation.PopToRootAsync();
+                            Application.Current.MainPage.Navigation.PushAsync(mainPage);
                         });
                     }
                     else
                     {
                         Device.BeginInvokeOnMainThread(() =>
                         {
-                          
                             lbl_info.Text = data_result.ToString().Remove(0, 7); ;
-                            Pseudo.IsEnabled = true;
-                            Password.IsEnabled = true;
-                            btn_Connection.IsEnabled = true;
+                            Entry.IsEnabled = true;
+                            Entry.IsVisible = true;
+                            Loader.IsVisible = false;
+                            Loader.IsRunning = false;
                         });
                     }
                 });
@@ -79,9 +83,10 @@ namespace Fluxx
             else
             {
                 lbl_info.Text = "Veuillez entrer du text dans les deux champs";
-                Pseudo.IsEnabled = true;
-                Password.IsEnabled = true;
-                btn_Connection.IsEnabled = true;
+                Entry.IsEnabled = true;
+                Entry.IsVisible = true;
+                Loader.IsVisible = false;
+                Loader.IsRunning = false;
             }
         }
     }
