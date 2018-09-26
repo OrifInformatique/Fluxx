@@ -1,23 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Fluxx.
-             Page">
+             x:Class="Fluxx.CreateGamePage">
     <ContentPage.Content >
-        
-        <StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label />
+
+        <StackLayout Orientation="Vertical"
+                     HorizontalOptions="Fill">
+            <StackLayout VerticalOptions="Start"
+                         Orientation="Horizontal">
+                
                 <Label x:Name="RoomName" 
                        Text="RoomName" 
                        FontSize="Large" 
-                       HorizontalOptions="CenterAndExpand"/>
+                       HorizontalOptions="FillAndExpand"/>
                 <Label x:Name="RoomNumPlayer" 
-                       Text="/" FontSize="Medium"
+                       Text="/" 
+                       WidthRequest="50"
+                       FontSize="Medium"
                        HorizontalOptions="End"/>
             </StackLayout>
-            <StackLayout x:Name="PlayersEmplacement"
-                         VerticalOptions="StartAndExpand">
+            <Label x:Name="lbl_info"
+                        TextColor="Red"/>
+            <StackLayout VerticalOptions="FillAndExpand"
+                         HorizontalOptions="Fill"
+                         x:Name="Chat"/>
+            
+            <StackLayout BackgroundColor="GhostWhite" 
+                         x:Name="PlayersEmplacement"
+                         VerticalOptions="End">
 
             </StackLayout>
             <Button VerticalOptions="End"

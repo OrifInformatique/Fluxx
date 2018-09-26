@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Fluxx;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,11 +18,13 @@ namespace Fluxx
         Room _room;
         Player _player;
         Socket socket;
-        public RoomView(Room room, Player player)
+        public RoomView(Room room, Player player, Button lunchGameButton)
         {
 			InitializeComponent();
             _room = room;
             _player = player;
+            lunchGameButton.Clicked += JoinButton_Clicked;
+            secondLine.Children.Add(lunchGameButton);
             socket = new ServerConnection().Socket();
             ChargeRoom();
            
@@ -31,7 +32,7 @@ namespace Fluxx
         private void ChargeRoom()
         {
             RoomName.Text = _room.Name;
-            RoomNumPlayer.Text = GetNumberOfPlayer(_room) +"/"+_room.NumPlayer.ToString();
+            RoomNumPlayer.Text = GetNumberOfPlayer(_room) +"/"+_room.Players.Count().ToString();
             if (String.IsNullOrEmpty(_room.Password)) password.IsVisible = false;
             
         }
@@ -45,29 +46,12 @@ namespace Fluxx
         }
         private void JoinButton_Clicked(object sender, EventArgs e)
         {
-
-            if (_room.Password == null) _room.Password = "";
-            if(password.Text == _room.Password)
+            if(_room.Password == null||password.Text == _room.Password)
             {
-
-                JObject players = JObject.Parse(JsonConvert.SerializeObject(_room.Players));
-                    
-                
-                string jout = "{ RoomName: '" + _room.Name + ", RoomOpen: " + _room.Name + ", RoomPLayers: [" + players + "], PlayerId: " + _player.Id + ", PlayerPseudo: " + _player.Pseudo + ", PlayerPassword: " + _player.Password + ", PlayerWins: " + _player.Wins + ", PlayerLosses: " + _player.Losses + ", PlayerColor: " + _player.Color + "}";
+                string jroom = JsonConvert.SerializeObject(_room);
+                string jplayer = JsonConvert.SerializeObject(_player);
+                JObject jout = JObject.Parse("{\"Room\":"+jroom+" , \"Player\": "+jplayer+"}");
                 socket.Emit("joinRoom", jout);
-
-                socket.On("joinRoomEcho", data_result =>
-                {
-                    if ( (string)data_result == "true")
-                    {
-                        CreateGamePage createGamePage = new CreateGamePage(_room, _player);
-                        Application.Current.MainPage.Navigation.PushAsync(createGamePage);
-                    }
-                    else
-                    {
-                        lbl_info.Text = (string)data_result;
-                    }
-                });
             }
             else
             {

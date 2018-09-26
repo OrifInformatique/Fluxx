@@ -40,15 +40,10 @@ namespace Fluxx
 
             if (Pseudo.Text != null && Password.Text != null)
             {
-
-                JObject jout = new JObject
+                socket.Emit("loginPlayer", "{\"Pseudo\":\""+Pseudo.Text+"\", \"Password\":\""+Hash(Password.Text)+"\"}");
+                socket.On("loginPlayerEcho", data_result =>
                 {
-                    ["pseudo"] = Pseudo.Text,
-                    ["password"] = Hash(Password.Text)
-                };
-                socket.Emit("loginPlayer", jout);
-                socket.On("loginPlayerEcho", async data_result =>
-                {
+                    socket.Off("loginPlayerEcho");
                     if (!data_result.ToString().StartsWith("Error: "))
                     {
                        
@@ -59,7 +54,7 @@ namespace Fluxx
                         Application.Current.Properties["playerColor"] = p.Color;
                         Application.Current.Properties["playerWins"] = p.Wins;
                         Application.Current.Properties["playerLosses"] = p.Losses; 
-                        await Application.Current.SavePropertiesAsync();
+                        Application.Current.SavePropertiesAsync();
                         Device.BeginInvokeOnMainThread(() =>
                         {
                             MainPage mainPage = new MainPage(p);

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             HorizontalOptions="FillAndExpand"
+             BackgroundColor="#80ffffff"
+             x:Class="Fluxx.ChatBox">
+    <ContentView.Content HorizontalOptions="FillAndExpand">
+        <StackLayout x:Name="content" HorizontalOptions="FillAndExpand">
+            <StackLayout x:Name="MaximizeChat" VerticalOptions="FillAndExpand" Orientation="Vertical">
+                <ScrollView x:Name="ScrollView" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                    <StackLayout Orientation="Vertical" x:Name="MessageEmplacement" Padding="3" BackgroundColor="#00000044"/>
+                </ScrollView>
+                
+                <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                    <Entry HorizontalOptions="FillAndExpand" x:Name="EntryMessage" Placeholder="message" MaxLength="255"/>
+                    <Button HorizontalOptions="End" x:Name="btnSendMessage" Clicked="BtnSendMessage_Clicked" Text="➭" BackgroundColor="Transparent"/>
+                    <Button HorizontalOptions="End" x:Name="btnMinimize" Clicked="BtnMinimize_Clicked" Text="⯅" BackgroundColor="Transparent"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout x:Name="MinimizeChat" IsVisible="False" Orientation="Horizontal" BackgroundColor="#00000044" >
+                <Label HorizontalOptions="FillAndExpand" x:Name="LastMessage" />
+                <Button HorizontalOptions="End" x:Name="btnMaximize" Clicked="BtnMaximize_Clicked" Text="⯆" BackgroundColor="Transparent"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

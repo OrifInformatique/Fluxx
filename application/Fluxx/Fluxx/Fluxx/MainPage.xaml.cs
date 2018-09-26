@@ -52,14 +52,19 @@ namespace Fluxx
         }
  
 
-        private void On
-            (object sender, EventArgs e)
+        private void OnCreateGame(object sender, EventArgs e)
         {
             if (_player != null)
             {
-                SetGamePage setGamePage = new SetGamePage(_player);
+                Room _room = null;
+                GamePage setGamePage = new GamePage(_room, _player);
                 Application.Current.MainPage.Navigation.PushAsync(setGamePage);
             }
+           /* if (_player != null)
+            {
+                SetGamePage setGamePage = new SetGamePage(_player);
+                Application.Current.MainPage.Navigation.PushAsync(setGamePage);
+            }*/
         }
         private void OnJoinGame(object sender, EventArgs e)
         {

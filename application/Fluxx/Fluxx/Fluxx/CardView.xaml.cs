@@ -14,30 +14,133 @@ namespace Fluxx
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CardView : ContentView
     {
+        public event EventHandler AnimationCompleted = delegate { };
         double leftTitleMarginLeft = 1;
         double leftTitleMarginTop = 1;
         public static readonly Color colorGoal = Color.FromHex("#D03080");
         public static readonly Color colorKeeper = Color.FromHex("#B0C010");
         public static readonly Color colorNewRule = Color.FromHex("#E0B000");
         public static readonly Color colorAction = Color.FromHex("#30A0D0");
+
         double CardHeight;
-        public CardView(Card card, double cardHeight)
+        AbsoluteLayout AnimLayout;
+        bool face;
+        bool showed;
+
+        
+       // public bool _face_up;
+
+        public CardView(Card card, double cardHeight, AbsoluteLayout AnimLayout)
         {
             InitializeComponent();
-            CardHeight = cardHeight;
+            CardHeight = cardHeight;//default Height = 25% of screen height
+            this.AnimLayout = AnimLayout;
             ChargeCard(card);
-
+            face = true;
+            showed = false;
+            // _face_up = face_up;
         }
 
-        private void CardLayoutChangeSize(object sender, EventArgs e)
+        public double GetWidth(double height)
+        {
+            return (height / 11) * 7;
+        }
+        public async void AnimShowCard(bool show)
+        {
+            
+            if (!this.AnimationIsRunning("ScaleTo"))
+            {
+                if (show)
+                {
+                    double x = X;
+                    double y = Y;
+                    // IsVisible = false;
+                    double hmem = Height, wmem = Width;
+                    AnimLayout.IsVisible = true;
+                    AnimLayout.WidthRequest = Application.Current.MainPage.Width;
+                    AnimLayout.HeightRequest = Application.Current.MainPage.Height;
+                    AnimLayout.Children.Insert(0, this);
+                    TranslationX = x;
+                    TranslationY = y;
+                    this.HeightRequest = hmem;
+                    this.WidthRequest = wmem;
+
+                    //  CardHeight = this.Height;
+                    await this.TranslateTo(Application.Current.MainPage.Width / 2, Application.Current.MainPage.Height/2, 500);
+                    await this.ScaleTo(((Application.Current.MainPage.Height-40)/Height), 500);
+                }
+                else
+                {
+
+                    AnimLayout.IsVisible = false;
+                    IsVisible = true;
+                    AnimLayout.Children.Remove(this);
+                    await this.ScaleTo(0.5, 200);
+
+                }
+                showed = show;
+                AnimationCompleted(this, EventArgs.Empty);
+            }
+
+        }
+        private async void AnimMoveCard(CardView card, StackLayout initial, StackLayout final)
+        {
+            
+            //todo changement of size
+            /* if (!card.AnimationIsRunning("TranslateTo"))
+             {
+                 initial.Children.Remove(card);
+                 AnimLayout.IsVisible = true;
+                 AnimLayout.Children.Insert(0,card);
+                 AnimLayout.Children[0].TranslationX = initial.X;
+                 AnimLayout.Children[0].TranslationY = initial.Y;
+                 await card.TranslateTo(final.X - card.X, final.Y - card.Y, 1000);
+                 AnimationCompleted(this, EventArgs.Empty);
+                 AnimLayout.Children.Remove(card);
+                 AnimLayout.IsVisible = false;
+                 final.Children.Add(card);
+             }*/
+             
+            initial.Children.Remove(card);
+            final.Children.Add(card);
+            card.HeightRequest = final.Height;
+            card.WidthRequest = (final.Height / 11) * 7;
+        }
+
+        public async void AnimTurnCard(bool final_face)//face true = face up //face false = face down
+        {
+          
+            if (!Card.AnimationIsRunning("RotateYTo"))
+            {
+                int rotate = 90;
+                if (face == final_face) rotate = 20;
+                await Card.RotateYTo(face?-rotate: rotate, 100);//0  to -90 = up left, 0   to  90 = up right
+                Card.RotationY = (final_face)?-rotate : rotate;      //90 to   0 = right, -90 to   0 = left 
+                CardFrame.IsVisible = final_face;
+                LeftTitleFrame.IsVisible = final_face;
+                CardFaceDown.IsVisible = !final_face;
+                await Card.RotateYTo(0, 100);
+                Card.RotationY = 0;
+                AnimationCompleted(this, EventArgs.Empty);
+                face = final_face;
+            }
+        }
+   
+        private void CardClick(object sender, EventArgs e)
+        {
+            AnimShowCard(!showed);
+        }
+        public void CardLayoutChangeSize(object sender, EventArgs e)
         {
             LeftTitleFrame.HeightRequest = CardLayout.Height * 490 / 610;
             LeftTitleFrame.WidthRequest = CardLayout.Height * 490 / 610;
+            CardFaceDown.HeightRequest = CardLayout.Height;
             LeftTitleFrame.Rotation = -90;
             LeftTitleFrame.Padding = 0;
             LeftTitleFrame.Margin = new Thickness(CardLayout.Width * leftTitleMarginLeft, CardLayout.Height * leftTitleMarginTop, 0, 0);
 
             CardFrame.CornerRadius = Convert.ToInt32(40 * CardLayout.Height / 1100);
+            CardFaceDown.CornerRadius = Convert.ToInt32(40 * CardLayout.Height / 1100);
             FrameColorType.CornerRadius = Convert.ToInt32(24 * CardLayout.Height / 1100);
             FrameContent.CornerRadius = Convert.ToInt32(12 * CardLayout.Height / 1100);
         }
@@ -61,11 +164,8 @@ namespace Fluxx
             double DescriptionFontSize = GeneralFontSize * 2.7;
             Thickness TitleMargin = new Thickness(0,CardHeight/80,0, CardHeight / 80);
 
-
-
-
             LabelLeftTitle.Text = card.Title.ToUpper();
-            LabelLeftTitle.FontFamily = "font_left_title.ttf#font_left_title";
+            LabelLeftTitle.FontFamily = "left_title_font.ttf#left_title_font";
             leftTitleMarginTop = 130D / 940D;
 
 
@@ -85,7 +185,7 @@ namespace Fluxx
                 LabelLeftTitle.FontSize = GeneralFontSize * 5.2;
             }
 
-            LabelTitleType.FontFamily = "font_type.ttf#font_type";
+            LabelTitleType.FontFamily = "type_title_font.ttf#type_title_font";
             LabelTitleType.FontSize = GeneralFontSize * 7;
 
             switch (card.GetType())
@@ -114,21 +214,21 @@ namespace Fluxx
                             TextColor = Color.Black,
                             Margin = TitleMargin,
                             FontSize =  TitleFontSize,
-                            FontFamily = "font_title.ttf#font_title",
+                            FontFamily = "title_font.ttf#title_font",
                         },
                         new Label()
                         {
                             Text = testText,
                             TextColor = Color.Black,
                             FontSize = DescriptionFontSize,
-                            FontFamily = "font_description.otf#font_description"
+                            FontFamily = "description_font.ttf#description_font"
                         }
                     }
                     }, 1, 3);
                     break;
                 case TypeOfCard.NewRule:
                     LabelTitleType.Text = "NOUVELLE RÈGLE";
-                    LabelTitleType.FontSize = GeneralFontSize * 4.6;
+                    LabelTitleType.FontSize = GeneralFontSize * 4.3;
                     FrameColorType.BackgroundColor = colorNewRule;
                     ImageIconType.Source = ImageSource.FromFile("icon_new_rule.png");
 
@@ -137,40 +237,40 @@ namespace Fluxx
                         Spacing = 0,
                         VerticalOptions = LayoutOptions.FillAndExpand,
                         Children =
-                    {
-                        new Image()
                         {
-                            Source = card.GetImage(),
-                            HorizontalOptions = LayoutOptions.Fill,
-                            VerticalOptions = LayoutOptions.CenterAndExpand
-                        },
-                        new Label()
-                        {
-                            Text = card.Title,
-                            TextColor = Color.Black,
-                            Margin = TitleMargin,
-                            FontSize =  TitleFontSize,
-                            VerticalOptions = LayoutOptions.End,
-                            FontFamily = "font_title.ttf#font_title",
+                            new Image()
+                            {
+                                Source = card.GetImage(),
+                                HorizontalOptions = LayoutOptions.Fill,
+                                VerticalOptions = LayoutOptions.CenterAndExpand
+                            },
+                            new Label()
+                            {
+                                Text = card.Title,
+                                TextColor = Color.Black,
+                                Margin = TitleMargin,
+                                FontSize =  TitleFontSize,
+                                VerticalOptions = LayoutOptions.End,
+                                FontFamily = "title_font.ttf#title_font",
 
-                        },
-                        new Label()
-                        {
-                            Text = card.SubTitle,
-                            TextColor = Color.Black,
-                            FontSize = SubtitleFontSize,
-                            VerticalOptions = LayoutOptions.End,
-                            FontFamily = "font_title.ttf#font_title"
-                        },
-                        new Label()
-                        {
-                            Text = card.Description,
-                            TextColor = Color.Black,
-                            FontSize = DescriptionFontSize,
-                            VerticalOptions = LayoutOptions.End,
-                            FontFamily = "font_description.otf#font_description"
+                            },
+                            new Label()
+                            {
+                                Text = card.SubTitle,
+                                TextColor = Color.Black,
+                                FontSize = SubtitleFontSize,
+                                VerticalOptions = LayoutOptions.End,
+                                FontFamily = "title_font.ttf#title_font"
+                            },
+                            new Label()
+                            {
+                                Text = card.Description,
+                                TextColor = Color.Black,
+                                FontSize = DescriptionFontSize,
+                                VerticalOptions = LayoutOptions.End,
+                                FontFamily = "description_font.ttf#description_font"
+                            }
                         }
-                    }
                     }, 1, 3);
                     break;
                 case TypeOfCard.Keeper:
@@ -197,7 +297,7 @@ namespace Fluxx
                             Margin = TitleMargin,
                             FontSize =  TitleFontSize,
                             VerticalOptions = LayoutOptions.End,
-                            FontFamily = "font_title.ttf#font_title",
+                            FontFamily = "title_font.ttf#title_font",
 
                         }
                     }
@@ -228,7 +328,7 @@ namespace Fluxx
                                     Margin = TitleMargin,
                                     FontSize =  TitleFontSize,
                                     VerticalOptions = LayoutOptions.End,
-                                    FontFamily = "font_title.ttf#font_title",
+                                    FontFamily = "title_font.ttf#title_font",
 
                                 },
                                 new Label()
@@ -237,7 +337,7 @@ namespace Fluxx
                                     TextColor = Color.Black,
                                     FontSize = DescriptionFontSize,
                                     VerticalOptions = LayoutOptions.End,
-                                    FontFamily = "font_description.otf#font_description"
+                                    FontFamily = "description_font.ttf#description_font"
                                 }
                             }
                         }, 1, 3);
@@ -251,7 +351,7 @@ namespace Fluxx
                             secondLabel.TextColor = Color.Black;
                             secondLabel.FontSize = SubtitleFontSize;
                             secondLabel.VerticalOptions = LayoutOptions.Start;
-                            secondLabel.FontFamily = "font_title.ttf#font_title";
+                            secondLabel.FontFamily = "title_font.ttf#title_font";
                         }
                         else if (card.SubTitle != null)
                         {
@@ -259,7 +359,7 @@ namespace Fluxx
                             secondLabel.TextColor = Color.Black;
                             secondLabel.FontSize = SubtitleFontSize;
                             secondLabel.VerticalOptions = LayoutOptions.Start;
-                            secondLabel.FontFamily = "font_title.ttf#font_title";
+                            secondLabel.FontFamily = "title_font.ttf#title_font";
                         }
                         else if (card.Description != null)
                         {
@@ -267,7 +367,7 @@ namespace Fluxx
                             secondLabel.TextColor = Color.Black;
                             secondLabel.FontSize = DescriptionFontSize;
                             secondLabel.VerticalOptions = LayoutOptions.Start;
-                            secondLabel.FontFamily = "font_description.otf#font_description";
+                            secondLabel.FontFamily = "description_font.ttf#description_font";
                         }
                     
 
@@ -284,7 +384,7 @@ namespace Fluxx
                                     Margin = TitleMargin,
                                     FontSize =  TitleFontSize,
                                     VerticalOptions = LayoutOptions.Start,
-                                    FontFamily = "font_title.ttf#font_title"
+                                    FontFamily = "title_font.ttf#title_font"
                                 },
                                 secondLabel,
                                 new Image()
@@ -305,5 +405,7 @@ namespace Fluxx
 
 
         }
+
+     
     }
 }

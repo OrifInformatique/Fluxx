@@ -5,20 +5,24 @@
              x:Name="Card">
     <ContentView.Content>
         <RelativeLayout
-            
             Margin="0"
             Padding="0"
             VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand"
+            HorizontalOptions="Start"
             x:Name="CardLayout"
             SizeChanged="CardLayoutChangeSize">
+            <RelativeLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="CardClick"/>
+            </RelativeLayout.GestureRecognizers>
             <Frame
+                  
                 x:Name="CardFrame"
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand"
                 BackgroundColor="#E8EAEC"
                 Padding="0"
                 Margin="0">
+                
                 <Grid 
                     ColumnSpacing="0"
                     RowSpacing="0"
@@ -37,6 +41,7 @@
                         <RowDefinition Height="34*"/>
                     </Grid.RowDefinitions>
                     <Frame
+                        HasShadow="False"
                         x:Name="FrameColorType"
                         Grid.Row="1" Grid.Column="1"
                         Padding="0"
@@ -58,7 +63,7 @@
                                 <RowDefinition Height="14*"/>
                                 <RowDefinition Height="105*" />
                                 <RowDefinition Height="967*"/>
-                                <RowDefinition Height="14*"/> 
+                                <RowDefinition Height="14*"/>
                             </Grid.RowDefinitions>
                             <Image
                                 x:Name="ImageIconType" 
@@ -66,6 +71,7 @@
                                 Grid.Row="1" Grid.Column="1">
                             </Image>
                             <Frame
+                                HasShadow="False"
                                 x:Name="FrameContent"
                                 Grid.Row="1" Grid.Column="3"
                                 Grid.RowSpan="2"
@@ -106,11 +112,12 @@
                                     </Label>
                                     <Frame
                                         Grid.Row="2" Grid.Column="1"
+                                        HasShadow="False"
                                         Margin="0"
                                         VerticalOptions="FillAndExpand"
                                         CornerRadius="0"
                                         BackgroundColor="Black">
-                                        
+
                                     </Frame>
                                 </Grid>
                             </Frame>
@@ -118,6 +125,7 @@
                     </Frame>
                 </Grid>
             </Frame>
+            
             <Frame
                 Padding="0"
                 Margin="0"
@@ -130,10 +138,22 @@
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="End"
                     FontAttributes="Bold"
-                    TextColor="#E8EAEC"
-                    Text="PAS DE LIMITES">
+                    TextColor="#E8EAEC">
                 </Label>
             </Frame>
+
+            <Frame IsVisible="False"
+                   x:Name="CardFaceDown"
+                   BackgroundColor="Black"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Padding="0"
+                   Margin="0">
+                <Image Source="card_face_down.png" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="FillAndExpand"/>
+            </Frame>
+
         </RelativeLayout>
     </ContentView.Content>
 </ContentView>

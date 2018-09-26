@@ -40,9 +40,12 @@ C:\xampp\htdocs\Fluxx\application\Fluxx_02\Fluxx\Fluxx\obj\Debug\netstandard2.0\
 C:\xampp\htdocs\Fluxx\application\Fluxx_02\Fluxx\Fluxx\obj\Debug\netstandard2.0\Fluxx.dll
 C:\xampp\htdocs\Fluxx\application\Fluxx_02\Fluxx\Fluxx\obj\Debug\netstandard2.0\Fluxx.pdb
 C:\xampp\htdocs\Fluxx\application\Fluxx_02\Fluxx\Fluxx\obj\Debug\netstandard2.0\XamlC.stamp
-C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\obj\Debug\netstandard2.0\Fluxx.csprojAssemblyReference.cache
+C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\bin\Debug\netstandard2.0\Fluxx.deps.json
+C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\bin\Debug\netstandard2.0\Fluxx.dll
+C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\bin\Debug\netstandard2.0\Fluxx.pdb
 C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\obj\Debug\netstandard2.0\CardView.xaml.g.cs
+C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\obj\Debug\netstandard2.0\ChatBox.xaml.g.cs
 C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\obj\Debug\netstandard2.0\ConnectionPage.xaml.g.cs
 C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\obj\Debug\netstandard2.0\CreateGamePage.xaml.g.cs
 C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\obj\Debug\netstandard2.0\GamePage.xaml.g.cs
@@ -55,9 +58,7 @@ C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\
 C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\obj\Debug\netstandard2.0\Fluxx.csproj.CoreCompileInputs.cache
 C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\obj\Debug\netstandard2.0\Fluxx.AssemblyInfoInputs.cache
 C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\obj\Debug\netstandard2.0\Fluxx.AssemblyInfo.cs
+C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\obj\Debug\netstandard2.0\Fluxx.dll
 C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\obj\Debug\netstandard2.0\Fluxx.pdb
-C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\bin\Debug\netstandard2.0\Fluxx.deps.json
-C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\bin\Debug\netstandard2.0\Fluxx.dll
-C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\bin\Debug\netstandard2.0\Fluxx.pdb
-C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\sela.INFORMATIQUE\Documents\GitHub\Fluxx\application\Fluxx\Fluxx\Fluxx\obj\Debug\netstandard2.0\Fluxx.csprojAssemblyReference.cache

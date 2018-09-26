@@ -6,7 +6,7 @@
         <StackLayout>
             <Label x:Name="lbl_info" TextColor="Red"></Label>
             <Label Text="Nom de la partie :"></Label>
-            <Entry x:Name="GameName" Placeholder="Nom de la partie" TextChanged="GameName_TextChanged"></Entry>
+            <Entry x:Name="GameName" Placeholder="Nom de la partie" TextChanged="GameName_TextChanged" MaxLength="50"></Entry>
             <Label Text="Nombre de Joueurs :"></Label>
             <Picker x:Name="RoomNbrPlayer" SelectedIndex="2" HorizontalOptions="FillAndExpand">
                 <Picker.Items>

@@ -49,12 +49,10 @@ namespace Fluxx
             _room = new Room
             {
                 Name = GameName.Text,
-                NumPlayer = num_player,
                 Password = RoomPassword.Text,
-                Open = true,
-                Host = _player,
-                Players = new Player[num_player-1]
+                Players = new Player[num_player]
             };
+            _room.Players[0] = _player;
             
             JObject jout = JObject.Parse(JsonConvert.SerializeObject(_room));
 
@@ -64,13 +62,12 @@ namespace Fluxx
             {
                 if ((bool)data_result)
                 {
+                    socket.Off("createRoomEcho");
                     Device.BeginInvokeOnMainThread(() =>
-                    {
-                        
+                    {     
                         CreateGamePage createGamePage = new CreateGamePage(_room, _player);
-                        var thisPage = Application.Current.MainPage.Navigation.NavigationStack.Last();
+                        Application.Current.MainPage.Navigation.PopToRootAsync();
                         Application.Current.MainPage.Navigation.PushAsync(createGamePage);
-                        Application.Current.MainPage.Navigation.RemovePage(thisPage);
                     });
                 }
                 else

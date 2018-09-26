@@ -3,24 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Fluxx.RoomView"
              HeightRequest="80"
-             HorizontalOptions="Fill"
-             x:Name="Room">
+             BackgroundColor="Black"
+             HorizontalOptions="FillAndExpand">
     <ContentView.Content>
-        <StackLayout
-            Orientation="Vertical"
-            Margin="5"
-            VerticalOptions="Start"
-            HorizontalOptions="Fill">
+        <StackLayout Orientation="Vertical"
+                     Margin="5"
+                     BackgroundColor="Beige"
+                     VerticalOptions="StartAndExpand"
+                     HorizontalOptions="FillAndExpand">
             <Label x:Name="lbl_info" TextColor="Red"></Label>
             <StackLayout VerticalOptions="Start"
                          Orientation="Horizontal">
-                <Label x:Name="RoomName" Text="unknow" />
-                <Label x:Name="RoomNumPlayer"  Text="unknow" HorizontalOptions="EndAndExpand" />
+                <Label x:Name="RoomName" Text="unknow"  HorizontalOptions="StartAndExpand" />
+                <Label x:Name="RoomNumPlayer"  Text="unknow" HorizontalOptions="End" />
             </StackLayout>
             <StackLayout VerticalOptions="End"
+                         x:Name="secondLine"
                          Orientation="Horizontal">
-                <Entry x:Name="password" IsPassword="True" Placeholder="Password" Text="" HorizontalOptions="FillAndExpand"/>
-                <Button x:Name="JoinButton" Text="Joindre" Clicked="JoinButton_Clicked" BackgroundColor="LightGray"  HorizontalOptions="End"></Button>
+                <Entry x:Name="password" IsPassword="True" Placeholder="Password" Text="" HorizontalOptions="StartAndExpand"/>
+                
             </StackLayout>
         </StackLayout>
     </ContentView.Content>

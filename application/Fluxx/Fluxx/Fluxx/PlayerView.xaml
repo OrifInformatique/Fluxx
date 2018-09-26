@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             HorizontalOptions="FillAndExpand"
              x:Class="Fluxx.PlayerView">
     <ContentView.Content>
-        <StackLayout x:Name="content">
+        <StackLayout HeightRequest="50" x:Name="content" HorizontalOptions="FillAndExpand">
             <StackLayout Orientation="Horizontal" VerticalOptions="Start">
-                <Label Text="Anonymous" x:Name="PlayerName" TextColor="blue" HorizontalOptions="StartAndExpand"/>
+                <Label Text="Anonymous" x:Name="PlayerName" HorizontalOptions="StartAndExpand"/>
                 <Label Text="Victoires : " x:Name="PlayerWins" HorizontalOptions="End" />
             </StackLayout>
             <StackLayout Orientation="Horizontal" VerticalOptions="End">

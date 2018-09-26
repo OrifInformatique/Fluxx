@@ -3,23 +3,78 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Fluxx.GamePage">
     <ContentPage.Content >
-        <StackLayout
-            BackgroundColor="Gray">
-            <ScrollView
-                VerticalOptions="Fill"
-                HorizontalOptions="Fill"
-                Orientation="Horizontal">
+        <AbsoluteLayout VerticalOptions="Fill" HorizontalOptions="Fill">
+            <Grid
+                 VerticalOptions="Fill" HorizontalOptions="Fill"
+                x:Name="PageContent"
+                ColumnSpacing="0"
+                RowSpacing="0"
+                Padding="0"
+                Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="left_col" Width="15*" />
+                    <ColumnDefinition x:Name="center_col"  Width="70*" />
+                    <ColumnDefinition x:Name="right_col" Width="15*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Name="Chat_row" Height="15*"/>
+                    <RowDefinition x:Name="top_row" Height="15*"/>
+                    <RowDefinition x:Name="center1_row" Height="30*"/>
+                    <RowDefinition x:Name="center2_row" Height="30*"/>
+                    <RowDefinition x:Name="bottom_row" Height="25*"/>
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0" Grid.Column="0"
+                             Grid.ColumnSpan="3"
+                             VerticalOptions="FillAndExpand"
+                             HorizontalOptions="Fill"
+                             x:Name="Chat"/>
+                <!--  à déplacer dans le controlleur {-->
+                    <StackLayout BackgroundColor="AliceBlue" x:Name="player_1" Grid.Row="3" Grid.Column="0" />
+                    <StackLayout BackgroundColor="Beige"     x:Name="player_2" Grid.Row="2" Grid.Column="0" />
+                    <StackLayout BackgroundColor="CadetBlue" x:Name="player_3" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" />
+                    <StackLayout BackgroundColor="DarkBlue"  x:Name="player_4" Grid.Row="2" Grid.Column="2" />
+                <StackLayout BackgroundColor="Firebrick" x:Name="player_5" Grid.Row="3" Grid.Column="2" >
+                     <Button x:Name="testbutton" Clicked="Test_Clicked"></Button>
+                </StackLayout>
+                <!-- } -->
 
-                <StackLayout x:Name="CardEmplacement"
-                    VerticalOptions="Fill" 
-                    HorizontalOptions="CenterAndExpand" 
-                    Orientation="Horizontal">
-                </StackLayout> 
-            </ScrollView>
-            <Button 
-                    Text="test"
-                    Clicked="OnClick"
-                    ></Button>
-        </StackLayout>
+
+                <StackLayout x:Name="player_0" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" >
+               
+                </StackLayout>
+                <Grid
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Grid.RowSpan="2"
+                x:Name="GameContent"
+                ColumnSpacing="0"
+                RowSpacing="0"
+                Padding="0"
+                Margin="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition x:Name="first_col" Width="1*" />
+                        <ColumnDefinition x:Name="second_col"  Width="1*" />
+                        <ColumnDefinition x:Name="last_col" Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition x:Name="other_card_row" Height="1*"/>
+                        <RowDefinition x:Name="new_rules_row" Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <ScrollView Orientation="Horizontal" 
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Grid.ColumnSpan="3"
+                                Grid.RowSpan="2" 
+                                BackgroundColor="Navy">
+                        <StackLayout x:Name="Test"
+                                     VerticalOptions="Fill" 
+                                     HorizontalOptions="CenterAndExpand" 
+                                     Orientation="Horizontal"/>
+                    </ScrollView>
+                </Grid>
+
+            </Grid>
+            <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" x:Name="AnimLayout" BackgroundColor="00000033" IsVisible="False"/>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -6,13 +6,8 @@
         <StackLayout
             AbsoluteLayout.LayoutFlags="All">
             <Label x:Name="lbl_info" TextColor="Red"/>
-            <ScrollView
-            VerticalOptions="FillAndExpand"
-            Orientation="Vertical">
-                <StackLayout VerticalOptions="Start"  x:Name="RoomsEmplacement">
-                </StackLayout>
-            </ScrollView>
-            
+            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand"  x:Name="RoomsEmplacement"/>
+            <ActivityIndicator x:Name="indicator" IsRunning="false" IsVisible="false" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -8,21 +8,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("Fluxx.CreateGamePage.xaml", "CreateGamePage.xaml", typeof(global::Fluxx.
-             Page))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("Fluxx.CreateGamePage.xaml", "CreateGamePage.xaml", typeof(global::Fluxx.CreateGamePage))]
 
 namespace Fluxx {
     
     
     [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("CreateGamePage.xaml")]
-    public partial class 
-             Page : global::Xamarin.Forms.ContentPage {
+    public partial class CreateGamePage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.Label RoomName;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.Label RoomNumPlayer;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.Label lbl_info;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.StackLayout Chat;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.StackLayout PlayersEmplacement;
@@ -32,10 +36,11 @@ namespace Fluxx {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(
-             Page));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(CreateGamePage));
             RoomName = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "RoomName");
             RoomNumPlayer = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "RoomNumPlayer");
+            lbl_info = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "lbl_info");
+            Chat = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.StackLayout>(this, "Chat");
             PlayersEmplacement = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.StackLayout>(this, "PlayersEmplacement");
             LunchGame = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Button>(this, "LunchGame");
         }
