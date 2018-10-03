@@ -74,7 +74,7 @@
                 </Grid>
 
             </Grid>
-            <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" x:Name="AnimLayout" BackgroundColor="00000033" IsVisible="False"/>
+            <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" x:Name="AnimLayout" BackgroundColor="#00000033" IsVisible="False"/>
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

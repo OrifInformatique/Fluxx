@@ -45,6 +45,13 @@
                 Margin="0"
                 Clicked="Connection_Clicked">
             </Button>
+            <Button 
+                x:Name="btn_test" 
+                Text="test" 
+                BackgroundColor="#888888"
+                Margin="0"
+                Clicked="Test_Clicked">
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -26,8 +26,7 @@ namespace Fluxx
         AbsoluteLayout AnimLayout;
         bool face;
         bool showed;
-
-        
+         
        // public bool _face_up;
 
         public CardView(Card card, double cardHeight, AbsoluteLayout AnimLayout)
@@ -52,22 +51,48 @@ namespace Fluxx
             {
                 if (show)
                 {
-                    double x = X;
-                    double y = Y;
-                    // IsVisible = false;
+                  
                     double hmem = Height, wmem = Width;
+                    double sOrigine = Scale, sDestination = Scale*((Application.Current.MainPage.Height - 40) / Height);
+                    double xOrigine = X, yOrigine = Y;
+                    var parent = (Parent as View);
+                    while (parent != null)
+                    {
+                        xOrigine += parent.X;
+                        yOrigine = parent.Y;
+                        parent = (parent.Parent as View);
+                    }
+
+
+
+                    double xDestination = (Application.Current.MainPage.Width - Width) / 2, yDestination = (Application.Current.MainPage.Height - Height) / 2;
+
+
+                    //1 initial state
+                    AnimLayout.BackgroundColor = Color.FromHex("#00000000");
                     AnimLayout.IsVisible = true;
                     AnimLayout.WidthRequest = Application.Current.MainPage.Width;
                     AnimLayout.HeightRequest = Application.Current.MainPage.Height;
-                    AnimLayout.Children.Insert(0, this);
-                    TranslationX = x;
-                    TranslationY = y;
-                    this.HeightRequest = hmem;
-                    this.WidthRequest = wmem;
 
-                    //  CardHeight = this.Height;
-                    await this.TranslateTo(Application.Current.MainPage.Width / 2, Application.Current.MainPage.Height/2, 500);
-                    await this.ScaleTo(((Application.Current.MainPage.Height-40)/Height), 500);
+                    AnimLayout.Children.Insert(0, this);
+                    HeightRequest = hmem; WidthRequest = wmem;
+
+                    //2
+                    var translationx = new Animation(callback: x => TranslationX = x, start: xOrigine, end: xDestination, easing: Easing.Linear);
+                    var translationy = new Animation(callback: y => TranslationY = y, start: yOrigine, end: yDestination, easing: Easing.Linear);
+                    var colorchange = new Animation(callback: c => (Parent as View).Opacity = c, start: 0, end: 0.5, easing: Easing.Linear);
+                    var scale = new Animation(callback: s => Scale = s, start: sOrigine, end: sDestination, easing: Easing.Linear);
+
+                    //3
+                    var animation = new Animation
+                    {
+                        { 0, 1, translationx },
+                        { 0, 1, translationy },
+               //         { 0, 1, colorchange },
+                        { 0, 1, scale }
+                    };
+
+                    animation.Commit(this, "ViewCardAnimations", 16, 1000);
                 }
                 else
                 {
@@ -83,7 +108,7 @@ namespace Fluxx
             }
 
         }
-        private async void AnimMoveCard(CardView card, StackLayout initial, StackLayout final)
+        private void AnimMoveCard(CardView card, StackLayout initial, StackLayout final)
         {
             
             //todo changement of size

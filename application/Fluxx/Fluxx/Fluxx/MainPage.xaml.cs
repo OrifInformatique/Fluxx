@@ -56,15 +56,9 @@ namespace Fluxx
         {
             if (_player != null)
             {
-                Room _room = null;
-                GamePage setGamePage = new GamePage(_room, _player);
-                Application.Current.MainPage.Navigation.PushAsync(setGamePage);
-            }
-           /* if (_player != null)
-            {
                 SetGamePage setGamePage = new SetGamePage(_player);
                 Application.Current.MainPage.Navigation.PushAsync(setGamePage);
-            }*/
+            }
         }
         private void OnJoinGame(object sender, EventArgs e)
         {
@@ -86,6 +80,15 @@ namespace Fluxx
         {
             ConnectionPage connectionPage = new ConnectionPage();
             Application.Current.MainPage.Navigation.PushAsync(connectionPage);
-        }       
+        }
+        private void Test_Clicked(object sender, EventArgs e)
+        {
+            if (_player != null)
+            {
+                Room _room = null;
+                GamePage setGamePage = new GamePage(_room, _player);
+                Application.Current.MainPage.Navigation.PushAsync(setGamePage);
+            }
+        }      
     }
 }
