@@ -12,7 +12,7 @@ namespace Fluxx
 
         public Socket Socket()
         {
-            url = new Uri("http://192.168.4.136:8080");
+            url = new Uri("http://192.168.3.74:8080");
             if(socket == null)
             {
                 socket = IO.Socket(url);

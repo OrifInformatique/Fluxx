@@ -547,14 +547,14 @@
           "build/MonoAndroid81/Xamarin.Android.Support.Vector.Drawable.targets": {}
         }
       },
-      "Xamarin.Forms/3.1.0.697729": {
+      "Xamarin.Forms/3.2.0.839982": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Android.Support.Design": "25.4.0.2",
-          "Xamarin.Android.Support.v4": "25.4.0.2",
-          "Xamarin.Android.Support.v7.AppCompat": "25.4.0.2",
-          "Xamarin.Android.Support.v7.CardView": "25.4.0.2",
-          "Xamarin.Android.Support.v7.MediaRouter": "25.4.0.2"
+          "Xamarin.Android.Support.Design": "27.0.2",
+          "Xamarin.Android.Support.v4": "27.0.2",
+          "Xamarin.Android.Support.v7.AppCompat": "27.0.2",
+          "Xamarin.Android.Support.v7.CardView": "27.0.2",
+          "Xamarin.Android.Support.v7.MediaRouter": "27.0.2"
         },
         "compile": {
           "lib/MonoAndroid10/FormsViewGroup.dll": {},
@@ -581,7 +581,7 @@
         "dependencies": {
           "Newtonsoft.Json": "11.0.2",
           "SocketIoClientDotNet": "1.0.5",
-          "Xamarin.Forms": "3.1.0.697729"
+          "Xamarin.Forms": "3.2.0.839982"
         },
         "compile": {
           "bin/placeholder/Fluxx.dll": {}
@@ -1685,10 +1685,10 @@
         "xamarin.android.support.vector.drawable.nuspec"
       ]
     },
-    "Xamarin.Forms/3.1.0.697729": {
-      "sha512": "YlFOM9u8onIRxJwYJ3l+O0wFKqzzrDjDrgnoBr1rct+eaQKU77vFydxvTP+WxYlYzR14hYvyLNC65L84+6ke6w==",
+    "Xamarin.Forms/3.2.0.839982": {
+      "sha512": "BtiTMpmTqkzPPlGvQEVrO51kC1e/vieOaGHB+bKUULER0ruf2EQ92zVRwuvLop60g0WQQJ0Arj45TNCu6qCINQ==",
       "type": "package",
-      "path": "xamarin.forms/3.1.0.697729",
+      "path": "xamarin.forms/3.2.0.839982",
       "files": [
         ".signature.p7s",
         "build/netstandard1.0/Mono.Cecil.Mdb.dll",
@@ -1830,7 +1830,7 @@
         "lib/uap10.0/Xamarin.Forms.Platform.dll",
         "lib/uap10.0/Xamarin.Forms.Xaml.dll",
         "lib/uap10.0/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.3.1.0.697729.nupkg.sha512",
+        "xamarin.forms.3.2.0.839982.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
     },
@@ -1849,24 +1849,24 @@
       "Xamarin.Android.Support.v7.AppCompat >= 27.0.2.1",
       "Xamarin.Android.Support.v7.CardView >= 27.0.2.1",
       "Xamarin.Android.Support.v7.MediaRouter >= 27.0.2.1",
-      "Xamarin.Forms >= 3.1.0.697729"
+      "Xamarin.Forms >= 3.2.0.839982"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sela.INFORMATIQUE\\.nuget\\packages\\": {}
+    "C:\\Users\\sewer\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sela.INFORMATIQUE\\Documents\\GitHub\\Fluxx\\application\\Fluxx\\Fluxx\\Fluxx.Android\\Fluxx.Android.csproj",
+      "projectUniqueName": "C:\\Users\\sewer\\Documents\\GitHub\\Fluxx\\application\\Fluxx\\Fluxx\\Fluxx.Android\\Fluxx.Android.csproj",
       "projectName": "Fluxx.Android",
-      "projectPath": "C:\\Users\\sela.INFORMATIQUE\\Documents\\GitHub\\Fluxx\\application\\Fluxx\\Fluxx\\Fluxx.Android\\Fluxx.Android.csproj",
-      "packagesPath": "C:\\Users\\sela.INFORMATIQUE\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sela.INFORMATIQUE\\Documents\\GitHub\\Fluxx\\application\\Fluxx\\Fluxx\\Fluxx.Android\\obj\\",
+      "projectPath": "C:\\Users\\sewer\\Documents\\GitHub\\Fluxx\\application\\Fluxx\\Fluxx\\Fluxx.Android\\Fluxx.Android.csproj",
+      "packagesPath": "C:\\Users\\sewer\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sewer\\Documents\\GitHub\\Fluxx\\application\\Fluxx\\Fluxx\\Fluxx.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\sela.INFORMATIQUE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\sewer\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1879,8 +1879,8 @@
       "frameworks": {
         "monoandroid81": {
           "projectReferences": {
-            "C:\\Users\\sela.INFORMATIQUE\\Documents\\GitHub\\Fluxx\\application\\Fluxx\\Fluxx\\Fluxx\\Fluxx.csproj": {
-              "projectPath": "C:\\Users\\sela.INFORMATIQUE\\Documents\\GitHub\\Fluxx\\application\\Fluxx\\Fluxx\\Fluxx\\Fluxx.csproj"
+            "C:\\Users\\sewer\\Documents\\GitHub\\Fluxx\\application\\Fluxx\\Fluxx\\Fluxx\\Fluxx.csproj": {
+              "projectPath": "C:\\Users\\sewer\\Documents\\GitHub\\Fluxx\\application\\Fluxx\\Fluxx\\Fluxx\\Fluxx.csproj"
             }
           }
         }
@@ -1915,7 +1915,7 @@
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[3.1.0.697729, )"
+            "version": "[3.2.0.839982, )"
           }
         }
       }

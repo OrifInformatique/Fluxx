@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Xamarin.Forms;
+using Xamarin.Forms; 
 using Xamarin.Forms.Xaml;
 using static Fluxx.Card;
 
@@ -21,66 +21,95 @@ namespace Fluxx
         public static readonly Color colorKeeper = Color.FromHex("#B0C010");
         public static readonly Color colorNewRule = Color.FromHex("#E0B000");
         public static readonly Color colorAction = Color.FromHex("#30A0D0");
+    
 
-        double CardHeight;
-        AbsoluteLayout AnimLayout;
-        bool face;
-        bool showed;
-         
-       // public bool _face_up;
+        
+
+
+        AbsoluteLayout animLayout;
+        RelativeLayout invisible; //for remplace card during animation 
+        RelativeLayout initialLayout;
+        double xInitial, yInitial, sInitial, xFinal, yFinal, sFinal, xCurrent, yCurrent, sCurrent;//(for animation)
+        bool face;  // true = face up, false = face down
+        bool showed;// true = over all for lecture, false = default 
 
         public CardView(Card card, double cardHeight, AbsoluteLayout AnimLayout)
         {
             InitializeComponent();
-            CardHeight = cardHeight;//default Height = 25% of screen height
-            this.AnimLayout = AnimLayout;
-            ChargeCard(card);
+            HeightRequest = cardHeight;//default Height = 25% of screen height
+            this.animLayout = AnimLayout;
             face = true;
             showed = false;
-            // _face_up = face_up;
+            invisible = new RelativeLayout()
+            {
+                HeightRequest = Height,
+                WidthRequest = Width,
+                BackgroundColor = Color.Transparent
+            };
+            ChargeCard(card);
+            
         }
+
+        private void Test1(object sender, EventArgs e)
+        {
+
+            AnimShowCard(!showed);
+        }
+        private void Test2(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("2---------------------");
+        }
+        private void Test3(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("3---------------------");
+        }
+        private void Test4(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("4---------------------");
+        }
+
 
         public double GetWidth(double height)
         {
             return (height / 11) * 7;
         }
-        public async void AnimShowCard(bool show)
+
+        public async void AnimShowCard(bool show)// show = destination, showed = origine;
         {
-            
-            if (!this.AnimationIsRunning("ScaleTo"))
+
+            if (show && !showed)
             {
-                if (show)
+                if (!this.AnimationIsRunning("ViewCardAnimations"))
                 {
-                  
                     double hmem = Height, wmem = Width;
-                    double sOrigine = Scale, sDestination = Scale*((Application.Current.MainPage.Height - 40) / Height);
-                    double xOrigine = X, yOrigine = Y;
-                    var parent = (Parent as View);
-                    while (parent != null)
-                    {
-                        xOrigine += parent.X;
-                        yOrigine = parent.Y;
-                        parent = (parent.Parent as View);
-                    }
-
-
-
+                    double sOrigine = Scale, sDestination = Scale * ((Application.Current.MainPage.Height - 40) / Height);
+                    (double xOrigine, double yOrigine) = GetXY(this);
                     double xDestination = (Application.Current.MainPage.Width - Width) / 2, yDestination = (Application.Current.MainPage.Height - Height) / 2;
 
-
                     //1 initial state
-                    AnimLayout.BackgroundColor = Color.FromHex("#00000000");
-                    AnimLayout.IsVisible = true;
-                    AnimLayout.WidthRequest = Application.Current.MainPage.Width;
-                    AnimLayout.HeightRequest = Application.Current.MainPage.Height;
-
-                    AnimLayout.Children.Insert(0, this);
+                    animLayout.BackgroundColor = Color.FromHex("#00000000");
+                    animLayout.WidthRequest = Application.Current.MainPage.Width;
+                    animLayout.HeightRequest = Application.Current.MainPage.Height;
                     HeightRequest = hmem; WidthRequest = wmem;
+
+                    invisible.HeightRequest = Height;
+                    invisible.WidthRequest = Width;
+                    // (Parent as RelativeLayout).Children.Remove(this);
+
+                    initialLayout = (Parent as RelativeLayout);
+
+                    animLayout.Children.Insert(0, this);
+                    HeightRequest = hmem; WidthRequest = wmem;
+                    TranslationX = xOrigine; TranslationY = yOrigine;
+
+                    //result.Children.Add(CardsViews[cardId], Constraint.Constant(0), Constraint.Constant(0), Constraint.RelativeToParent((parent) => { return (result.Height / verticalFormat) * horizontalFormat; }), Constraint.RelativeToParent((parent) => { return result.Height; }));
+                    initialLayout.Children.Add(invisible, Constraint.Constant(0), Constraint.Constant(0), Constraint.Constant(Width), Constraint.Constant(Height));
+                    //(Parent.Parent as StackLayout).Children.Insert((Parent as StackLayout).Children.IndexOf(this), invisible);
+                    animLayout.IsVisible = true;
 
                     //2
                     var translationx = new Animation(callback: x => TranslationX = x, start: xOrigine, end: xDestination, easing: Easing.Linear);
                     var translationy = new Animation(callback: y => TranslationY = y, start: yOrigine, end: yDestination, easing: Easing.Linear);
-                    var colorchange = new Animation(callback: c => (Parent as View).Opacity = c, start: 0, end: 0.5, easing: Easing.Linear);
                     var scale = new Animation(callback: s => Scale = s, start: sOrigine, end: sDestination, easing: Easing.Linear);
 
                     //3
@@ -88,48 +117,105 @@ namespace Fluxx
                     {
                         { 0, 1, translationx },
                         { 0, 1, translationy },
-               //         { 0, 1, colorchange },
                         { 0, 1, scale }
                     };
 
                     animation.Commit(this, "ViewCardAnimations", 16, 1000);
+                    await Task.Delay(1000);
+                    showed = show;
                 }
-                else
-                {
-
-                    AnimLayout.IsVisible = false;
-                    IsVisible = true;
-                    AnimLayout.Children.Remove(this);
-                    await this.ScaleTo(0.5, 200);
-
-                }
-                showed = show;
-                AnimationCompleted(this, EventArgs.Empty);
             }
+            if (showed && !show)
+            {
+                if (!this.AnimationIsRunning("ViewCardAnimations"))
+                {
+                    this.AbortAnimation("ViewCardAnimations");
+                }
+                if (!this.AnimationIsRunning("!ViewCardAnimations"))
+                {
+                    
+                    double sOrigine = Scale, sDestination = invisible.Scale;
+                    double xOrigine = (Application.Current.MainPage.Width - Width) / 2, yOrigine = (Application.Current.MainPage.Height - Height) / 2;
+                    (double xDestination, double yDestination) = GetXY(invisible);
+
+                    var translationx = new Animation(callback: x => TranslationX = x, start: xOrigine, end: xDestination, easing: Easing.Linear);
+                    var translationy = new Animation(callback: y => TranslationY = y, start: yOrigine, end: yDestination, easing: Easing.Linear);
+                    var scale = new Animation(callback: s => Scale = s, start: sOrigine, end: sDestination, easing: Easing.Linear);
+
+                    Animation animation = new Animation {
+                        { 0, 1, translationx },
+                        { 0, 1, translationy },
+                        { 0, 1, scale }
+                    };
+                    
+                    animation.Commit(this, "!ViewCardAnimations", 16, 500);
+
+                    await Task.Delay(500);
+                    int i = initialLayout.Children.IndexOf(invisible);
+                    //_parent.Children.RemoveAt(i);
+                    TranslationX = 0;
+                    TranslationY = 0;
+                    initialLayout.Children.Insert(i, this);
+
+                    //_parent.Children.Remove(invisible);
+                    animLayout.Children.Remove(this);
+                    animLayout.IsVisible = false;
+
+                    showed = show;
+                }
+            }
+            AnimationCompleted(this, EventArgs.Empty);
+        
+    
 
         }
-        private void AnimMoveCard(CardView card, StackLayout initial, StackLayout final)
+        private async void AnimMoveCard(StackLayout final, double final_height)
         {
-            
-            //todo changement of size
-            /* if (!card.AnimationIsRunning("TranslateTo"))
-             {
-                 initial.Children.Remove(card);
-                 AnimLayout.IsVisible = true;
-                 AnimLayout.Children.Insert(0,card);
-                 AnimLayout.Children[0].TranslationX = initial.X;
-                 AnimLayout.Children[0].TranslationY = initial.Y;
-                 await card.TranslateTo(final.X - card.X, final.Y - card.Y, 1000);
-                 AnimationCompleted(this, EventArgs.Empty);
-                 AnimLayout.Children.Remove(card);
-                 AnimLayout.IsVisible = false;
-                 final.Children.Add(card);
-             }*/
-             
-            initial.Children.Remove(card);
-            final.Children.Add(card);
-            card.HeightRequest = final.Height;
-            card.WidthRequest = (final.Height / 11) * 7;
+            if (!this.AnimationIsRunning("MoveCardAnimations"))
+            {
+                (double xOrigine, double yOrigine) = GetXY(this);
+                (double xDestination, double yDestination ) = GetXY(final);
+                double hOrigine = Height, wOrigine = Width, hDestination = final_height, wDestination = GetWidth(final_height);
+
+                var translationx = new Animation(callback: x => TranslationX = x, start: xOrigine, end: xDestination, easing: Easing.Linear);
+                var translationy = new Animation(callback: y => TranslationY = y, start: yOrigine, end: yDestination, easing: Easing.Linear);
+                var scaleH = new Animation(callback: s => HeightRequest = s, start: hOrigine, end: hDestination, easing: Easing.Linear);
+                var scaleW = new Animation(callback: s => HeightRequest = s, start: wOrigine, end: wDestination, easing: Easing.Linear);
+
+                //3
+                var animation = new Animation
+                    {
+                        { 0, 1, translationx },
+                        { 0, 1, translationy },
+                        { 0, 1, scaleH },
+                        { 0, 1, scaleW }
+                    };
+
+                //avant animation
+                animation.Commit(this, "ViewCardAnimations", 16, 1000);
+                await Task.Delay(1000);
+                //après animation
+
+            }
+        }
+        public (double, double) GetXY(View view)
+        {
+            double x = view.X, y = view.Y;
+            var parent = (view.Parent as View);
+            while (parent != null)
+            {
+                if (parent is ScrollView)
+                {
+                    if ((parent as ScrollView).Orientation == ScrollOrientation.Horizontal)
+                        x -= (parent as ScrollView).ScrollX;
+                    else
+                        y -= (parent as ScrollView).ScrollY;
+                }
+                x += parent.X;
+                y += parent.Y;
+                parent = (parent.Parent as View);
+            }
+            return (x, y);
         }
 
         public async void AnimTurnCard(bool final_face)//face true = face up //face false = face down
@@ -151,8 +237,9 @@ namespace Fluxx
             }
         }
    
-        private void CardClick(object sender, EventArgs e)
+        private void CardTouch(object sender, EventArgs e)
         {
+           
             AnimShowCard(!showed);
         }
         public void CardLayoutChangeSize(object sender, EventArgs e)
@@ -183,11 +270,11 @@ namespace Fluxx
              LabelSubTitle
              Image
              */
-            double GeneralFontSize = CardHeight / 88;
+            double GeneralFontSize = Height / 88;
             double TitleFontSize = GeneralFontSize * 4.8;
             double SubtitleFontSize = GeneralFontSize * 3;
             double DescriptionFontSize = GeneralFontSize * 2.7;
-            Thickness TitleMargin = new Thickness(0,CardHeight/80,0, CardHeight / 80);
+            Thickness TitleMargin = new Thickness(0, Height / 80, 0, Height / 80);
 
             LabelLeftTitle.Text = card.Title.ToUpper();
             LabelLeftTitle.FontFamily = "left_title_font.ttf#left_title_font";

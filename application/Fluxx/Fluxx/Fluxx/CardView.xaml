@@ -12,8 +12,9 @@
             x:Name="CardLayout"
             SizeChanged="CardLayoutChangeSize">
             <RelativeLayout.GestureRecognizers>
-                <TapGestureRecognizer Tapped="CardClick"/>
+                <TapGestureRecognizer DescendantAdded="Test2" Tapped="Test1" />
             </RelativeLayout.GestureRecognizers>
+            
             <Frame
                   
                 x:Name="CardFrame"

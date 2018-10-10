@@ -46,7 +46,7 @@ namespace Fluxx
             for (int i = 0; i < Cards.Count()-4; i=i+3)
             {
                 Start();
-                card = CardView(Cards[i].Id, ((Application.Current.MainPage.Height-Chat.Height)*25/100));
+                card = GenerateCardView(Cards[i].Id, ((Application.Current.MainPage.Height-Chat.Height)*25/100));
                 Test.Children.Add(card);//, Constraint.Constant(0), Constraint.Constant(0), Constraint.Constant(46 * 7), Constraint.Constant(46 * 11)
 
             }
@@ -112,12 +112,11 @@ namespace Fluxx
                 Children = { }
             };
         }
-        private RelativeLayout CardView(int cardId, double cardHeight)
+        private RelativeLayout GenerateCardView(int cardId, double cardHeight)
         {
             float horizontalFormat = 7;
             float verticalFormat = 11;
             RelativeLayout result = new RelativeLayout();
-      
             
                /* Image backCardImg = new Image { Source = "back_card.png" };
 
@@ -134,6 +133,7 @@ namespace Fluxx
             {                
                 CardsViews[cardId] = new CardView(Cards[cardId], cardHeight, AnimLayout);
                 result.Children.Add(CardsViews[cardId], Constraint.Constant(0), Constraint.Constant(0), Constraint.RelativeToParent((parent) => { return (result.Height/verticalFormat)*horizontalFormat; }), Constraint.RelativeToParent((parent) => { return result.Height; }));
+                
             }
             else
             {
